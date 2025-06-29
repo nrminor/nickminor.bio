@@ -1,9 +1,9 @@
 // This is your config file, place any global data here.
 // You can import this data from anywhere in your site by using the `import` keyword.
 
-import type nav from "./i18n/nav";
-import ui from "./i18n/ui";
-import type { SupportedLanguage } from "./utils/i18n";
+import type nav from "./i18n/nav.ts";
+import ui from "./i18n/ui.ts";
+import type { SupportedLanguage } from "./utils/i18n.ts";
 
 type Config = {
   title: string;
@@ -12,21 +12,20 @@ type Config = {
   profile: {
     author: string;
     description?: string;
-  },
+  };
   settings: {
-    paginationSize: number,
-  },
-}
+    paginationSize: number;
+  };
+};
 
 type SocialLink = {
   icon: string;
   friendlyName: string; // for accessibility
   link: string;
-}
+};
 
 export const SUPPORTED_LANGUAGES = {
-  'en': 'en',
-  'es': 'es'
+  "en": "en",
 };
 
 export const DEFAULT_LANG = SUPPORTED_LANGUAGES.en as SupportedLanguage;
@@ -36,16 +35,16 @@ export const siteConfig: Config = {
   description: ui[DEFAULT_LANG]["site.description"].text,
   lang: DEFAULT_LANG,
   profile: {
-    author: "Amy Dang",
-    description: ui[DEFAULT_LANG]["profile.description"].text
+    author: "Nicholas R. Minor",
+    description: ui[DEFAULT_LANG]["profile.description"].text,
   },
   settings: {
-    paginationSize: 10
-  }
-}
+    paginationSize: 10,
+  },
+};
 
-/** 
-  These are you social media links. 
+/**
+  These are you social media links.
   It uses https://github.com/natemoo-re/astro-icon#readme
   You can find icons @ https://icones.js.org/
 */
@@ -53,7 +52,7 @@ export const SOCIAL_LINKS: Array<SocialLink> = [
   {
     icon: "mdi:github",
     friendlyName: "Github",
-    link: "https://github.com/kirontoo/astro-theme-cody",
+    link: "https://github.com/nrminor",
   },
   {
     icon: "mdi:linkedin",
@@ -63,16 +62,20 @@ export const SOCIAL_LINKS: Array<SocialLink> = [
   {
     icon: "mdi:email",
     friendlyName: "email",
-    link: "mailto:ndangamy@gmail.com",
+    link: "mailto:",
   },
   {
     icon: "mdi:rss",
     friendlyName: "rss",
-    link: "/rss.xml"
-  }
+    link: "/rss.xml",
+  },
 ];
 
 // NOTE: match these entries with keys in `src/i18n/nav.ts`
 export const NAV_LINKS: Array<keyof typeof nav[SupportedLanguage]> = [
-  "home", "about", "blog", "projects", "archive"
+  "home",
+  "about",
+  "blog",
+  "projects",
+  "archive",
 ];

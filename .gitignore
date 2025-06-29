@@ -1,21 +1,113 @@
-# build output
-dist/
-# generated types
-.astro/
+*
 
-# dependencies
-node_modules/
+# open-source basics
+!LICENSE
+!.gitignore
+!README.md
 
-# logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
+# public static files
+!public/
 
+# top-level whole-project configuration
+.prettierrc.mjs
+astro.config.mjs
+deno.lock
+node_modules
+package.json
+pnpm-lock.yaml
+tailwind.config.mjs
+tsconfig.json
 
-# environment variables
-.env
-.env.production
+# vscode configuration for the normies
+!.vscode
+!.vscode/*.json
+!.vscode/*.jsonc
 
-# macOS-specific files
-.DS_Store
+# main source code root
+!src/
+!src/*.ts
+
+# internationalization source code
+!src/i18n
+!src/i18n/*.ts
+!src/i18n/*.tsx
+!src/i18n/*.js
+!src/i18n/*.jsx
+!src/i18n/*.astro
+
+# layouts
+!src/layouts
+!src/layouts/*.ts
+!src/layouts/*.tsx
+!src/layoujs/*.js
+!src/layoujs/*.jsx
+!src/layouts/*.astro
+
+# components
+!src/components
+!src/components/*.astro
+!src/components/*.md
+!src/components/*.mdx
+!src/components/blog
+!src/components/blog/*.astro
+!src/components/blog/*.mdx
+!src/components/blog/*.md
+
+# pages
+!src/pages
+!src/pages/*.ts
+!src/pages/*.tsx
+!src/pages/*.js
+!src/pages/*.jsx
+!src/pages/*.astro
+!src/pages/*.mdx
+!src/pages/*.md
+!src/pages/en
+!src/pages/en/*.ts
+!src/pages/en/*.tsx
+!src/pages/en/*.js
+!src/pages/en/*.jsx
+!src/pages/en/*.astro
+!src/pages/en/*.mdx
+!src/pages/en/*.md
+!src/pages/en
+!src/pages/en/*.ts
+!src/pages/en/*.tsx
+!src/pages/en/*.js
+!src/pages/en/*.jsx
+!src/pages/en/*.astro
+!src/pages/en/*.md
+!src/pages/en/*.mdx
+
+# blog posts and other content
+!src/content
+!src/content/*.ts
+!src/content/*.tsx
+!src/content/*.astro
+!src/content/blog
+!src/content/blog/*.md
+!src/content/blog/*.mdx
+!src/content/blog/en/*.md
+!src/content/blog/en/*.mdx
+!src/content/blog/es/*.md
+!src/content/blog/es/*.mdx
+!src/content/project
+!src/content/project/*.md
+!src/content/project/*.mdx
+
+# root styles
+!src/styles
+!src/styles/*.ts
+!src/styles/*.tsx
+!src/styles/*.js
+!src/styles/*.jsx
+!src/styles/*.astro
+
+# utility code
+!src/utils
+!src/utils/*.ts
+!src/utils/*.tsx
+!src/utils/*.js
+!src/utils/*.jsx
+!src/utils/*.astro
+
