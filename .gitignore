@@ -9,31 +9,26 @@
 !public/
 
 # top-level whole-project configuration
-.prettierrc.mjs
-astro.config.mjs
-deno.lock
-node_modules
-package.json
-pnpm-lock.yaml
-tailwind.config.mjs
-tsconfig.json
+!.prettierrc.mjs
+!astro.config.mjs
+!package.json
+!tailwind.config.mjs
+!tsconfig.json
+!biome.jsonc
+!.pre-commit-config.yaml
+!.lycheeignore
+!justfile
 
-# vscode configuration for the normies
-!.vscode
-!.vscode/*.json
-!.vscode/*.jsonc
+# github workflows
+!.github/
+!.github/SETUP.md
+!.github/workflows/
+!.github/workflows/*.yml
+!.github/workflows/*.yaml
 
 # main source code root
 !src/
 !src/*.ts
-
-# internationalization source code
-!src/i18n
-!src/i18n/*.ts
-!src/i18n/*.tsx
-!src/i18n/*.js
-!src/i18n/*.jsx
-!src/i18n/*.astro
 
 # layouts
 !src/layouts
@@ -62,22 +57,6 @@ tsconfig.json
 !src/pages/*.astro
 !src/pages/*.mdx
 !src/pages/*.md
-!src/pages/en
-!src/pages/en/*.ts
-!src/pages/en/*.tsx
-!src/pages/en/*.js
-!src/pages/en/*.jsx
-!src/pages/en/*.astro
-!src/pages/en/*.mdx
-!src/pages/en/*.md
-!src/pages/en
-!src/pages/en/*.ts
-!src/pages/en/*.tsx
-!src/pages/en/*.js
-!src/pages/en/*.jsx
-!src/pages/en/*.astro
-!src/pages/en/*.md
-!src/pages/en/*.mdx
 
 # blog posts and other content
 !src/content
@@ -89,8 +68,6 @@ tsconfig.json
 !src/content/blog/*.mdx
 !src/content/blog/en/*.md
 !src/content/blog/en/*.mdx
-!src/content/blog/es/*.md
-!src/content/blog/es/*.mdx
 !src/content/project
 !src/content/project/*.md
 !src/content/project/*.mdx
@@ -102,6 +79,7 @@ tsconfig.json
 !src/styles/*.js
 !src/styles/*.jsx
 !src/styles/*.astro
+!src/styles/*.css
 
 # utility code
 !src/utils

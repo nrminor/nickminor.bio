@@ -1,0 +1,165 @@
+---
+export interface Props {
+  width?: number;
+  height?: number;
+  zoom?: number;
+  className?: string;
+}
+
+const {
+  width = 500,
+  height = 500,
+  zoom = 1.2,
+  className = "",
+} = Astro.props;
+---
+
+<div class={`dna-animation-wrapper ${className}`}>
+  <canvas
+    class="dna-canvas"
+    {width}
+    {height}
+    data-zoom={zoom}
+  ></canvas>
+</div>
+
+<script>
+  import Zdog from "zdog";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const canvas = document.querySelector(".dna-canvas");
+    if (!canvas) return;
+
+    const zoom = parseFloat(canvas.dataset.zoom) || 1.2;
+    const TAU = Zdog.TAU;
+    let isSpinning = true;
+
+    // Initialize illustration
+    const illo = new Zdog.Illustration({
+      element: canvas,
+      zoom: zoom,
+      dragRotate: true,
+      onDragStart: function () {
+        isSpinning = false;
+      },
+      onDragEnd: function () {
+        isSpinning = true;
+      },
+    });
+
+    // Create parent anchor that will spin
+    const helixAnchor = new Zdog.Anchor({
+      addTo: illo,
+      rotate: {
+        x: TAU / 4,
+        y: -TAU / 8,
+      },
+    });
+
+    // DNA helix parameters
+    const helixA = [];
+    const helixB = [];
+    const turns = 16;
+    const segmentsPerTurn = 24;
+    const radius = 40;
+    const height = 3000;
+    const totalSegments = turns * segmentsPerTurn;
+
+    // Generate helix points
+    for (let i = 0; i <= totalSegments; i++) {
+      const t = i / totalSegments;
+      const angle = t * turns * Zdog.TAU;
+      const z = t * height - height / 2;
+
+      // Helix A
+      helixA.push({
+        x: Math.cos(angle) * radius,
+        y: Math.sin(angle) * radius,
+        z: z,
+      });
+
+      // Helix B – opposite phase
+      helixB.push({
+        x: Math.cos(angle + Math.PI) * radius,
+        y: Math.sin(angle + Math.PI) * radius,
+        z: z,
+      });
+    }
+
+    // Create DNA strands - vibrant but sophisticated
+    new Zdog.Shape({
+      addTo: helixAnchor,
+      path: helixA,
+      stroke: 12,
+      color: "#e74c3c", // Rich red (complementary to site's coral)
+      closed: false,
+    });
+
+    new Zdog.Shape({
+      addTo: helixAnchor,
+      path: helixB,
+      stroke: 12,
+      color: "#3498db", // Clean blue (complements turquoise accent)
+      closed: false,
+    });
+
+    // Base pair colors - scientific yet appealing
+    const basePairs = [
+      "#f39c12", // Warm orange (A-T bonds)
+      "#9b59b6", // Purple (G-C bonds)
+      "#2ecc71", // Green (balanced complement)
+      "#e67e22", // Amber (secondary warm tone)
+    ];
+
+    // Create base pair connections
+    for (let i = 0; i <= totalSegments; i += 4) {
+      const color = basePairs[Math.floor(Math.random() * basePairs.length)];
+
+      new Zdog.Shape({
+        addTo: helixAnchor,
+        path: [helixA[i], helixB[i]],
+        stroke: 9,
+        color: color,
+      });
+    }
+
+    // Animation loop
+    let spinZ = 0;
+    let ticker = 0;
+    // const cycleCount = 150;
+
+    function animate() {
+      if (isSpinning) {
+        spinZ += 0.01;
+        // const progress = ticker / cycleCount;
+        // const tween = Zdog.easeInOut(progress % 4, 6);
+        // helixAnchor.rotate.z = tween * TAU + spinZ;
+        helixAnchor.rotate.z = spinZ;
+        ticker++;
+      }
+
+      illo.updateRenderGraph();
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  });
+</script>
+
+<style>
+  .dna-animation-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .dna-canvas {
+    border-radius: 8px;
+    background: transparent;
+    cursor: grab;
+  }
+
+  .dna-canvas:active {
+    cursor: grabbing;
+  }
+</style>

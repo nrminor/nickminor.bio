@@ -1,0 +1,24 @@
+# Exclude localhost and development URLs
+^https?://localhost
+^https?://127\.0\.0\.1
+^https?://0\.0\.0\.0
+
+# Exclude social media platforms that rate-limit
+^https://(www\.)?(facebook|twitter|x)\.com
+^https://(www\.)?linkedin\.com
+^https://(www\.)?instagram\.com
+
+# Exclude mailto links
+^mailto:
+
+# Exclude placeholder links
+^#$
+^/#$
+
+# Exclude file:// links
+^file://
+
+# Exclude example/placeholder domains
+example\.com
+example\.org
+placeholder\.com

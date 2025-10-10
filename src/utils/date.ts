@@ -4,12 +4,12 @@ const dateOptions = {
     day: "numeric",
     month: "short",
     year: "numeric",
-  }
+  },
 };
 
 const dateFormat = new Intl.DateTimeFormat(
-  dateOptions.locale, 
-  dateOptions.options as Intl.DateTimeFormatOptions
+  dateOptions.locale,
+  dateOptions.options as Intl.DateTimeFormatOptions,
 );
 
 export function getFormattedDate(

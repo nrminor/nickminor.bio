@@ -1,23 +1,22 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
-import { siteConfig, NAV_LINKS } from "../consts";
+import { siteConfig } from "../consts";
 import ThemeToggle from "@/components/ThemeToggle";
-import SelectLanguage from "@/components/SelectLanguage";
-import { getLangFromUrl } from "@/utils";
-import { useNavTranslations } from "src/utils/i18n";
-import type { NavEntry } from "@/i18n/nav";
 
 const url = new URL(Astro.request.url);
-const lang = getLangFromUrl(Astro.url);
-const t = useNavTranslations(lang);
 
-function buildNavLink(nav: string, entry: NavEntry): string {
-  if (entry.route) {
-    return `/${lang}${entry.route}`;
-  }
-
-  return `/${lang}${nav != "home" ? `/${entry.slug}/` : "/"}`;
-}
+const navLinks = [
+  { key: "home", text: "Home", slug: "", route: "/" },
+  { key: "about", text: "About", slug: "about", route: "/about" },
+  { key: "blog", text: "Blog", slug: "blog", route: "/blog/pages/1" },
+  {
+    key: "projects",
+    text: "Projects",
+    slug: "projects",
+    route: "/projects/pages/1",
+  },
+  { key: "archive", text: "Archive", slug: "archive", route: "/archive" },
+];
 ---
 
 <header
@@ -27,9 +26,9 @@ function buildNavLink(nav: string, entry: NavEntry): string {
   <div class="block">
     <a
       class="title whitespace-nowrap"
-      href={`/${lang}/`}
-      aria-current={url.pathname === "/" ? "page" : false}>{siteConfig.title}</a
-    >
+      href="/"
+      aria-current={url.pathname === "/" ? "page" : false}
+    >{siteConfig.title}</a>
   </div>
 
   <nav
@@ -41,40 +40,36 @@ function buildNavLink(nav: string, entry: NavEntry): string {
       class="space-y-1 px-2 pb-3 pt-2 sm:flex sm:px-0 sm:py-0 sm:space-y-0 sm:space-x-2"
     >
       {
-        NAV_LINKS.map((nav) => {
-          const translation = t(nav);
-          return (
-            <HeaderLink
-              class="block py-2 sm:py-0"
-              href={buildNavLink(nav, translation)}
-              title={translation.text}
-              aria-current={url.pathname === translation.slug ? "page" : false}
-              data-astro-prefetch
-            >
-              {translation.text}
-            </HeaderLink>
-          );
-        })
+        navLinks.map((link) => (
+          <HeaderLink
+            class="block py-2 sm:py-0"
+            href={link.route}
+            title={link.text}
+            aria-current={url.pathname === link.slug ? "page" : false}
+            data-astro-prefetch
+          >
+            {link.text}
+          </HeaderLink>
+        ))
       }
       <HeaderLink
         class="sm:hidden block py-2 sm:py-0"
         href="/tags"
         title="tags"
         aria-current={url.pathname === "tags" ? "page" : false}
-        data-astro-prefetch>{t("tags").text}</HeaderLink
-      >
+        data-astro-prefetch
+      >Tags</HeaderLink>
       <HeaderLink
         class="sm:hidden block py-2 sm:py-0"
         href="/series"
         title="series"
         aria-current={url.pathname === "series" ? "page" : false}
-        data-astro-prefetch>{t("series").text}</HeaderLink
-      >
+        data-astro-prefetch
+      >Series</HeaderLink>
     </div>
   </nav>
 
   <div class="flex gap-2 items-center justify-center">
-    <SelectLanguage class="sm:mr-2" />
     <ThemeToggle />
 
     <nav-button>
@@ -100,7 +95,9 @@ function buildNavLink(nav: string, entry: NavEntry): string {
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
-              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+            >
+            </path>
           </svg>
 
           <!-- icon when menu is open -->
@@ -115,7 +112,9 @@ function buildNavLink(nav: string, entry: NavEntry): string {
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
-              d="M6 18L18 6M6 6l12 12"></path>
+              d="M6 18L18 6M6 6l12 12"
+            >
+            </path>
           </svg>
         </button>
       </div>
@@ -129,13 +128,13 @@ function buildNavLink(nav: string, entry: NavEntry): string {
   }
 
   .title:before {
-    content: "[";
+    content: "let site = ";
     margin-right: 0;
     @apply text-bgColor;
   }
 
   .title:after {
-    content: "]";
+    content: ";";
     @apply text-bgColor;
   }
 </style>
@@ -151,7 +150,9 @@ function buildNavLink(nav: string, entry: NavEntry): string {
     constructor() {
       super();
       this.headerEl = document.getElementById("main-header")!;
-      this.mobileButtonEl = this.querySelector("button") as HTMLButtonElement;
+      this.mobileButtonEl = this.querySelector(
+        "button",
+      ) as HTMLButtonElement;
       this.menuOpen = false;
 
       this.mobileButtonEl.addEventListener("click", this.toggleMobileMenu);

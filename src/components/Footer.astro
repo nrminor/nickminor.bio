@@ -1,9 +1,15 @@
 ---
-import { getLangFromUrl, useNavTranslations } from "@/utils";
-import { NAV_LINKS, siteConfig } from "../consts.ts";
+import { siteConfig } from "../consts.ts";
+
 const year = new Date().getFullYear();
-const lang = getLangFromUrl(Astro.url);
-const t = useNavTranslations(lang);
+
+const navLinks = [
+  { text: "Home", slug: "", route: "/" },
+  { text: "About", slug: "about", route: "/about" },
+  { text: "Blog", slug: "blog", route: "/blog/pages/1" },
+  { text: "Projects", slug: "projects", route: "/projects/pages/1" },
+  { text: "Archive", slug: "archive", route: "/archive" },
+];
 ---
 
 <footer
@@ -18,17 +24,14 @@ const t = useNavTranslations(lang);
     class="sm:flex sm:divide-x sm:divide-accent"
   >
     {
-      NAV_LINKS.map((link) => {
-        const translation = t(link);
-        return (
-          <a
-            href={`/${lang}/${translation.slug}`}
-            class="px-2 py-0 hover:text-textColor hover:underline sm:px-4 sm:py-1 text-center"
-          >
-            {translation.text}
-          </a>
-        );
-      })
+      navLinks.map((link) => (
+        <a
+          href={link.route}
+          class="px-2 py-0 hover:text-textColor hover:underline sm:px-4 sm:py-1 text-center"
+        >
+          {link.text}
+        </a>
+      ))
     }
   </nav>
 </footer>

@@ -1,13 +1,21 @@
 {
-  "name": "astro-project",
+  "name": "nickminor-bio",
   "type": "module",
   "version": "1.3.5",
+  "engines": {
+    "bun": ">=1.2.0"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "format": "bunx prettier --write \"**/*.astro\" && bunx biome format --write .",
+    "format:astro": "bunx prettier --write \"**/*.astro\"",
+    "format:ts": "bunx biome format --write .",
+    "lint": "bunx biome lint --write .",
+    "check": "bunx biome check . && bunx prettier --check \"**/*.astro\""
   },
   "dependencies": {
     "@astrojs/check": "^0.5.10",
@@ -27,7 +35,9 @@
     "zdog": "^1.1.3"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.2.2",
     "@tailwindcss/typography": "^0.5.10",
+    "prettier": "^3.3.0",
     "prettier-plugin-astro": "^0.14.1"
   }
 }

@@ -1,0 +1,19 @@
+repos:
+  # Lychee link checker
+  - repo: https://github.com/lycheeverse/lychee.git
+    rev: v0.20.1
+    hooks:
+      - id: lychee
+        name: Check links with lychee
+        args: ["--no-progress", "--cache", "--max-cache-age", "1d"]
+        
+  # Basic pre-commit hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-toml
+      - id: check-merge-conflict

@@ -1,4 +1,72 @@
 ---
-import { DEFAULT_LANG } from "src/consts";
-return Astro.redirect(`/${DEFAULT_LANG}/`);
+import type { CollectionEntry } from "astro:content";
+import PostPreview from "@/components/blog/PostPreviewB";
+import SocialMediaLinks from "@/components/SocialMediaLinks";
+import BaseLayout from "@/layouts/Base";
+import DnaAnimation from "@/components/DnaAnimation";
+import { getAllPosts, sortMDByDate, sortMDByPinned } from "@/utils";
+
+const MAX_POSTS = 10;
+const allPosts = await getAllPosts();
+const allPostsByDate = sortMDByDate(allPosts);
+const allPostsByPinned = sortMDByPinned(allPostsByDate);
+const filteredPosts = allPostsByPinned.slice(0, MAX_POSTS);
 ---
+
+<BaseLayout title="Home">
+  <section class="grid gap-8 md:grid-cols-[1fr_400px] md:gap-12 items-start">
+    <div>
+      <h1 class="title">Hello and welcome! 👋</h1>
+      <p class="mb-4 sm:mb-8">
+        I'm Nick. I'm a biologist and software engineer who cares a lot about
+        building better tools for scientists. I work as a bioinformatician and
+        data scientist at University of Wisconsin - Madison, where my charge is to
+        make sense of pathogen and host genomic data. My core software values
+        include scientific reproducibility, ease-of-use, and efficiency--I want
+        any system I work on to meet researchers where they are, produce
+        reproducible results, and do more with less.
+      </p>
+
+      <p class="mb-4 sm:mb-8">
+        `nickminor.bio` is my personal website and blog. But it's also an
+        experiment in "full-stack biology," which is to say an exploration of web
+        development, data visualization, bioinformatics, and systems programming.
+        Read on for more about these and other topics!
+      </p>
+      <div>
+        <span>Let's connect: </span>
+        <SocialMediaLinks />
+      </div>
+    </div>
+
+    <div class="flex justify-start">
+      <DnaAnimation
+        width={400}
+        height={400}
+        className="md:sticky md:top-8"
+      />
+    </div>
+  </section>
+
+  <section class="mt-8 sm:mt-16">
+    <h2 class="title">Posts</h2>
+    <h4 class="subtitle">
+      Point-of-view essays, tutorials, rants, and quick notes
+    </h4>
+    <hr />
+    <ul class="space-y-4 sm:space-y-2">
+      {
+        filteredPosts.map((p) => (
+          <PostPreview post={p as CollectionEntry<"blog">} />
+        ))
+      }
+    </ul>
+  </section>
+
+  <!-- Add the following components: -->
+  <!-- - CV (should be a page, not a component here) -->
+  <!-- - a cool animated dashboard of something -->
+  <!-- - also not a component, but I should have pinned posts on "my stack" (based on my dotfiles) -->
+  <!-- and on how I built this site -->
+  <!-- - a showcase (show and tell?) of some sort, showing a cool data visualization, an animation, a code block, etc. Should it be a carousel? -->
+</BaseLayout>

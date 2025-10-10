@@ -1,10 +1,6 @@
 // This is your config file, place any global data here.
 // You can import this data from anywhere in your site by using the `import` keyword.
 
-import type nav from "./i18n/nav.ts";
-import ui from "./i18n/ui.ts";
-import type { SupportedLanguage } from "./utils/i18n.ts";
-
 type Config = {
   title: string;
   description: string;
@@ -24,19 +20,13 @@ type SocialLink = {
   link: string;
 };
 
-export const SUPPORTED_LANGUAGES = {
-  "en": "en",
-};
-
-export const DEFAULT_LANG = SUPPORTED_LANGUAGES.en as SupportedLanguage;
-
 export const siteConfig: Config = {
-  title: ui[DEFAULT_LANG]["site.title"].text,
-  description: ui[DEFAULT_LANG]["site.description"].text,
-  lang: DEFAULT_LANG,
+  title: "nickminor.bio",
+  description: "An web experiment at the interface of biology and computing.",
+  lang: "en",
   profile: {
     author: "Nicholas R. Minor",
-    description: ui[DEFAULT_LANG]["profile.description"].text,
+    description: "your bio description",
   },
   settings: {
     paginationSize: 10,
@@ -69,13 +59,4 @@ export const SOCIAL_LINKS: Array<SocialLink> = [
     friendlyName: "rss",
     link: "/rss.xml",
   },
-];
-
-// NOTE: match these entries with keys in `src/i18n/nav.ts`
-export const NAV_LINKS: Array<keyof typeof nav[SupportedLanguage]> = [
-  "home",
-  "about",
-  "blog",
-  "projects",
-  "archive",
 ];
