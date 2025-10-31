@@ -1,6 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @layer base {
   :root {
@@ -31,7 +30,7 @@
   }
 
   html body {
-    @apply mx-auto flex min-h-screen max-w-6xl flex-col px-4 pt-4 md:pt-8 font-mono text-sm font-normal antialiased bg-bgColor text-textColor;
+    @apply mx-auto flex min-h-screen max-w-6xl flex-col px-4 pt-4 md:pt-8 font-mono text-sm font-normal antialiased bg-[var(--theme-bg)] text-[var(--theme-text)];
   }
 
   /*
@@ -39,7 +38,7 @@
   */
 
   .prose-cody blockquote {
-    @apply text-quote border-l-0;
+    @apply text-[var(--theme-quote)] border-l-0;
   }
 
   .prose-cody a {
@@ -50,39 +49,47 @@
     font-weight: 700;
   }
 
-  .prose-cody :where(code):not(:where([class~=not-prose],[class~=not-prose] *)) {
-    @apply bg-accent !text-surface px-1 py-0;
+  .prose-cody
+    :where(code):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    @apply bg-[var(--theme-accent)] !text-[var(--theme-surface)] px-1 py-0;
   }
 
-  .prose :where(code):not(:where([class~="not-prose"],[class~="not-prose"] *))::before{
+  .prose
+    :where(code):not(
+      :where([class~="not-prose"], [class~="not-prose"] *)
+    )::before {
     content: none !important;
   }
 
-  .prose :where(code):not(:where([class~="not-prose"],[class~="not-prose"] *))::after{
+  .prose
+    :where(code):not(
+      :where([class~="not-prose"], [class~="not-prose"] *)
+    )::after {
     content: none !important;
   }
 
-  /* Code blocks (pre elements) */
   pre.astro-code {
     @apply text-base;
   }
 
-  /* Inline code within prose */
-  .prose-cody :where(code):not(:where([class~=not-prose],[class~=not-prose] *)):not(pre code) {
+  .prose-cody
+    :where(code):not(:where([class~="not-prose"], [class~="not-prose"] *)):not(
+      pre code
+    ) {
     @apply text-sm;
   }
 
   .prose-cody hr {
     border-top-style: dashed;
     border-top-width: 0.5px;
-    @apply border-accent my-4;
+    @apply border-[var(--theme-accent)] my-4;
   }
   .prose-cody thead {
     @apply border-b-0;
   }
 
   .prose-cody thead th {
-    @apply font-bold border-b border-dashed border-accent;
+    @apply font-bold border-b border-dashed border-[var(--theme-accent)];
   }
 
   .prose-cody tbody tr {
@@ -90,7 +97,7 @@
   }
 
   .prose-cody tfoot {
-    @apply font-bold border-t border-dashed border-accent;
+    @apply font-bold border-t border-dashed border-[var(--theme-accent)];
   }
 
   .prose-cody sup {
@@ -102,25 +109,25 @@
   }
 
   .prose-cody sup > a:hover {
-    @apply text-accent no-underline bg-none;
+    @apply text-[var(--theme-accent)] no-underline bg-none;
   }
 
   .prose-cody sup > a:before {
     content: "[";
-    @apply text-accent;
+    @apply text-[var(--theme-accent)];
   }
 
   .prose-cody sup > a:after {
     content: "]";
-    @apply text-accent;
+    @apply text-[var(--theme-accent)];
   }
 
   .prose-cody mark {
-    @apply bg-accent;
+    @apply bg-[var(--theme-accent)];
   }
 
   .prose-cody li::marker {
-    @apply text-accent;
+    @apply text-[var(--theme-accent)];
   }
 
   .prose-cody table {
@@ -129,12 +136,8 @@
     white-space: nowrap;
   }
 
-  /*
-  * ===== END =====
-  */
-
   .tag {
-    @apply bg-accent px-1 py-0 text-bgColor font-semibold text-sm;
+    @apply bg-[var(--theme-accent)] px-1 py-0 text-[var(--theme-bg)] font-semibold text-sm;
   }
 
   .tag:before {
@@ -162,16 +165,16 @@
   }
 
   .cody-bg {
-    @apply p-4 bg-surface;
+    @apply p-4 bg-[var(--theme-surface)];
   }
 
   .cody-copy-code {
-    @apply absolute top-2 right-2 bg-accent text-bgColor p-0.5 border border-accent hover:bg-bgColor hover:text-accent transition-all duration-200 text-sm;
+    @apply absolute top-2 right-2 bg-[var(--theme-accent)] text-[var(--theme-bg)] p-0.5 border border-[var(--theme-accent)] hover:bg-[var(--theme-bg)] hover:text-[var(--theme-accent)] transition-all duration-200 text-sm;
   }
 
   .title:before {
     content: "#";
-    @apply mr-2 text-accent-2;
+    @apply mr-2 text-[var(--theme-accent-2)];
   }
 
   .title {
@@ -179,21 +182,21 @@
   }
 
   hr {
-    @apply border-accent border-dashed my-6;
+    @apply border-[var(--theme-accent)] border-dashed my-6;
   }
 
   ::selection {
-    @apply bg-highlight text-bgColor;
+    @apply bg-[var(--theme-highlight)] text-[var(--theme-bg)];
   }
 
   ::-moz-selection {
-    @apply bg-highlight text-bgColor;
+    @apply bg-[var(--theme-highlight)] text-[var(--theme-bg)];
   }
 
   .fade-in {
     @apply transition-opacity duration-700 ease-in opacity-100 duration-700;
   }
-  
+
   .fade-out {
     @apply transition-opacity duration-700 ease-in opacity-0 duration-700;
   }

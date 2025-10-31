@@ -5,11 +5,14 @@
     "strictNullChecks": true,
     "paths": {
       "@/utils": ["src/utils/index.ts"],
-      "@/components/*": ["src/components/*.astro"],
-      "@/layouts/*": ["src/layouts/*.astro"],
-      "@/i18n/*": ["src/i18n/*.ts"],
+      "@/components/*": ["src/components/*"],
+      "@/layouts/*": ["src/layouts/*"],
       "@/styles/*": ["src/styles/*.css"]
     }
   },
-  "include": ["src", "*.ts"]
+  "include": ["src", "*.ts", "*.svelte", "*.astro"],
+  "plugins": [
+    { "name": "typescript-plugin-astro" },
+    { "name": "typescript-svelte-plugin" }
+  ]
 }

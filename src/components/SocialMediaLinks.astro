@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon";
+import { Icon } from "astro-icon/components";
 import { SOCIAL_LINKS } from "src/consts.ts";
 ---
 
@@ -9,7 +9,7 @@ import { SOCIAL_LINKS } from "src/consts.ts";
       SOCIAL_LINKS.map(({ link, icon, friendlyName }) => (
         <li class="flex">
           <a
-            class="inline-block p-1 sm:hover:text-accent"
+            class="inline-block p-1 sm:hover:text-[var(--theme-accent)]"
             href={link}
             target="_blank"
             rel={`noopener noreferrer`}

@@ -1,8 +1,8 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import type { HTMLTag, Polymorphic } from "astro/types";
-import FormattedDate from "@/components/FormattedDate";
-import { Icon } from "astro-icon";
+import FormattedDate from "@/components/FormattedDate.astro";
+import { Icon } from "astro-icon/components";
 import { getSlugFromCollectionEntry } from "@/utils";
 
 type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {
@@ -12,8 +12,9 @@ type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {
 
 const { post, withDesc = false } = Astro.props;
 const slug = getSlugFromCollectionEntry(post);
-const urlBasePath =
-  post.collection === "project" ? "projects" : post.collection;
+const urlBasePath = post.collection === "project"
+  ? "projects"
+  : post.collection;
 const postDate = post.data.updatedDate ?? post.data.pubDate;
 const pinned: boolean = !!post.data.order;
 ---
@@ -31,7 +32,7 @@ const pinned: boolean = !!post.data.order;
       {
         pinned && (
           <Icon
-            class="h-5 w-5 inline text-accent rotate-45 ml-1"
+            class="h-5 w-5 inline text-[var(--theme-accent)] rotate-45 ml-1"
             name="mdi:pin"
             aria-hidden="true"
             focusable="false"

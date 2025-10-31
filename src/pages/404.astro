@@ -4,11 +4,11 @@ import BaseLayout from "../layouts/Base.astro";
 
 <BaseLayout title="404">
   <section
-    class="flex justify-center items-center h-80 border-dashed border border-accent"
+    class="flex justify-center items-center h-80 border-dashed border border-[var(--theme-accent)]"
   >
     <div class="flex-col gap-2 text-8xl p-4 h-min">
       <span id="status-code"> 404</span>
-      <div class="border-b-2 border-accent w-full border-solid blink mt-1">
+      <div class="border-b-2 border-[var(--theme-accent)] w-full border-solid blink mt-1">
       </div>
     </div>
     <span>Looks like you're lost! You sure you know where you're going?</span>
@@ -16,9 +16,10 @@ import BaseLayout from "../layouts/Base.astro";
 </BaseLayout>
 
 <style>
+  @reference "tailwindcss";
   #status-code:before {
     content: "./";
-    @apply -mr-16 text-accent-2;
+    @apply text-[var(--theme-accent-2)] hover:text-[var(--theme-accent)];
   }
 
   .blink {

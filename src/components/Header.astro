@@ -1,7 +1,7 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
 import { siteConfig } from "../consts";
-import ThemeToggle from "@/components/ThemeToggle";
+import ThemeToggle from "@/components/ThemeToggle.astro";
 
 const url = new URL(Astro.request.url);
 
@@ -32,7 +32,7 @@ const navLinks = [
   </div>
 
   <nav
-    class="mt-4 bg-surface/95 sm:bg-bgColor absolute hidden top-8 w-full sm:block sm:static sm:mt-0 group-[.menu-open]:z-50 group-[.menu-open]:flex group-[.menu-open]:bg-bgColor"
+    class="mt-4 bg-surface/95 sm:bg-bgColor absolute hidden top-8 w-full sm:block sm:static sm:mt-0 group-[.menu-open]:z-50 group-[.menu-open]:flex group-[.menu-open]:bg-[var(--theme-bg)]"
     id="navigation-menu"
     aria-label="main menu"
   >
@@ -102,7 +102,7 @@ const navLinks = [
 
           <!-- icon when menu is open -->
           <svg
-            class="transform transition-all duration-150 ease-out h-6 w-6 scale-0 text-accent opacity-0 transition-all group-aria-expanded:scale-100 group-aria-expanded:opacity-100 hidden group-aria-expanded:block"
+            class="transform transition-all duration-150 ease-out h-6 w-6 scale-0 text-[var(--theme-accent)] opacity-0 transition-all group-aria-expanded:scale-100 group-aria-expanded:opacity-100 hidden group-aria-expanded:block"
             fill="none"
             viewBox="0 0 24 24"
             stroke-width="1.5"
@@ -123,19 +123,20 @@ const navLinks = [
 </header>
 
 <style>
+  @reference "tailwindcss";
   .title {
-    @apply bg-accent p-1 text-bgColor text-sm;
+    @apply bg-[var(--theme-accent)] p-1 text-[var(--theme-bg)] text-sm;
   }
 
   .title:before {
     content: "let site = ";
     margin-right: 0;
-    @apply text-bgColor;
+    @apply text-[var(--theme-bg)];
   }
 
   .title:after {
     content: ";";
-    @apply text-bgColor;
+    @apply text-[var(--theme-bg)];
   }
 </style>
 

@@ -2,11 +2,11 @@
 import type { CollectionEntry } from "astro:content";
 import Layout from "../layouts/Sidebar.astro";
 import FormattedDate from "../components/FormattedDate.astro";
-import SocialMediaLinks from "@/components/SocialMediaLinks";
-import TOC from "@/components/TableOfContents";
-import BackToTopBtn from "@/components/BackToTopBtn";
-import CopyBtn from "@/components/CopyBtn";
-import { Icon } from "astro-icon";
+import SocialMediaLinks from "@/components/SocialMediaLinks.astro";
+import TOC from "@/components/TableOfContents.astro";
+import BackToTopBtn from "@/components/BackToTopBtn.astro";
+import CopyBtn from "@/components/CopyBtn.astro";
+import { Icon } from "astro-icon/components";
 import { siteConfig } from "../consts";
 interface Props {
   post: CollectionEntry<"blog">;
@@ -29,8 +29,8 @@ const {
   },
 } = post;
 
-const { headings, remarkPluginFrontmatter } =
-  post.render && (await post.render());
+const { headings, remarkPluginFrontmatter } = post.render &&
+  (await post.render());
 const { minutesRead } = remarkPluginFrontmatter;
 
 const socialImage = ogImage ?? `/og-image/${slug}.png`;
@@ -44,13 +44,13 @@ const articleDate = updatedDate?.toISOString() ?? pubDate.toISOString();
 ---
 
 <Layout
-  title={title}
-  description={description}
+  {title}
+  {description}
   image={socialImage}
-  articleDate={articleDate}
+  {articleDate}
 >
   <article
-    class="cody-bg prose dark:prose-invert prose-cody text-textColor max-w-4xl"
+    class="cody-bg prose dark:prose-invert prose-cody text-[var(--theme-text)] max-w-4xl"
   >
     <header class="space-y-2">
       {
@@ -74,24 +74,26 @@ const articleDate = updatedDate?.toISOString() ?? pubDate.toISOString();
         <h1 class="text-3xl my-0">{title}</h1>
         {
           draft && (
-            <span class="px-1 py-0 bg-red-200 text-red-600 text-sm font-semibold">
+            <span
+              class="px-1 py-0 bg-red-200 text-red-600 text-sm font-semibold"
+            >
               draft
             </span>
           )
         }
       </div>
-      <span class="font-semibold text-textColor flex gap-2 items-center">
-        <FormattedDate date={pubDate} dateTimeOptions={dateTimeOptions} />
+      <span class="font-semibold text-[var(--theme-text)] flex gap-2 items-center">
+        <FormattedDate date={pubDate} {dateTimeOptions} />
         <span>
           / {minutesRead}
         </span>
         {
           updatedDate && (
-            <div class="italic px-2 bg-accent-2 w-fit text-sm font-normal">
+            <div class="italic px-2 bg-[var(--theme-accent-2)] w-fit text-sm font-normal">
               Last updated:{" "}
               <FormattedDate
                 date={updatedDate}
-                dateTimeOptions={dateTimeOptions}
+                {dateTimeOptions}
               />
             </div>
           )
@@ -106,18 +108,20 @@ const articleDate = updatedDate?.toISOString() ?? pubDate.toISOString();
               aria-hidden="true"
               focusable="false"
             />
-            {tags.map((tag: string) => (
-              <li class="tag">
-                <a href={`/tags/${tag}`}>{tag}</a>
-              </li>
-            ))}
+            {
+              tags.map((tag: string) => (
+                <li class="tag">
+                  <a href={`/tags/${tag}`}>{tag}</a>
+                </li>
+              ))
+            }
           </ul>
         )
       }
     </header>
     <hr class="my-4" />
     <main
-      class="prose-sm prose-headings:font-semibold prose-headings:ml-4 prose-headings:before:absolute prose-headings:before:-ms-4 prose-headings:before:text-accent prose-headings:before:content-['#'] prose-th:before:content-none prose-a:text-accent"
+      class="prose dark:prose-invert prose-cody max-w-4xl prose-sm prose-headings:font-semibold prose-headings:ml-4 prose-headings:before:absolute prose-headings:before:-ms-4 prose-headings:before:text-[var(--theme-accent)] prose-headings:before:content-['#'] prose-th:before:content-none prose-a:text-[var(--theme-accent)]"
     >
       <slot />
     </main>
@@ -125,12 +129,12 @@ const articleDate = updatedDate?.toISOString() ?? pubDate.toISOString();
   </article>
   <aside slot="sidebar" class="hidden sm:block">
     <div class="flex flex-col space-y-2">
-      <h2 class="font-semibold text-lg text-textColor">
+      <h2 class="font-semibold text-lg text-[var(--theme-text)]">
         {siteConfig.profile.author}
       </h2>
       {siteConfig.profile.description && <p>your bio description</p>}
       <SocialMediaLinks />
-      <span class="!my-4 text-accent" aria-hidden>---</span>
+      <span class="!my-4 text-[var(--theme-accent)]" aria-hidden>---</span>
       <p>
         {description}
       </p>
@@ -150,7 +154,7 @@ const articleDate = updatedDate?.toISOString() ?? pubDate.toISOString();
         )
       }
     </div>
-    {!!headings.length && <TOC headings={headings} />}
+    {!!headings.length && <TOC {headings} />}
   </aside>
 </Layout>
 

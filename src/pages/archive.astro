@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
-import BaseLayout from "@/layouts/Base";
-import PostPreview from "@/components/blog/PostPreviewA";
+import BaseLayout from "@/layouts/Base.astro";
+import PostPreview from "@/components/blog/PostPreviewA.astro";
 import { sortMDByDate } from "@/utils";
 
 const allPosts = await getCollection("blog");
@@ -29,25 +29,27 @@ const years = Object.keys(postsByYear)
 
 <BaseLayout title={meta.title} description={meta.description}>
   <h1 class="title mb-6">Archive</h1>
-  <p class="mb-8 text-textColor">
+  <p class="mb-8 text-[var(--theme-text)]">
     All {sortedPosts.length} blog posts, organized by year.
   </p>
-  
+
   <div class="space-y-12">
     {
       years.map((year) => (
         <section>
-          <h2 class="mb-4 text-2xl font-bold text-textColor">{year}</h2>
+          <h2 class="mb-4 text-2xl font-bold text-[var(--theme-text)]">{year}</h2>
           <ul class="space-y-4">
-            {postsByYear[year].map((post) => (
-              <PostPreview as="h3" post={post} withDesc />
-            ))}
+            {
+              postsByYear[year].map((post) => (
+                <PostPreview as="h3" {post} withDesc />
+              ))
+            }
           </ul>
         </section>
       ))
     }
   </div>
-  
+
   {
     sortedPosts.length === 0 && (
       <div class="text-center py-12">

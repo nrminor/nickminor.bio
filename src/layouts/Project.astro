@@ -1,9 +1,9 @@
 ---
 import { siteConfig } from "../consts";
 import SidebarLayout from "./Sidebar.astro";
-import SocialMediaLinks from "@/components/SocialMediaLinks";
-import TOC from "@/components/TableOfContents";
-import { Icon } from "astro-icon";
+import SocialMediaLinks from "@/components/SocialMediaLinks.astro";
+import TOC from "@/components/TableOfContents.astro";
+import { Icon } from "astro-icon/components";
 import type { CollectionEntry } from "astro:content";
 
 interface Props {
@@ -27,11 +27,7 @@ const { headings } = project.render && (await project.render());
 const articleDate = pubDate.toISOString();
 ---
 
-<SidebarLayout
-  title={title}
-  description={description}
-  articleDate={articleDate}
->
+<SidebarLayout {title} {description} {articleDate}>
   <section class="cody-bg space-y-2 sm:space-y-4">
     <h2 class="title">{title}</h2>
 
@@ -57,16 +53,18 @@ const articleDate = pubDate.toISOString();
           <li class="project-frontmatter-item">
             <small>STACK</small>
             <ul class="inline-flex gap-2 sm:gap-4">
-              {stack.map((s: string) => (
-                <li>
-                  <Icon
-                    class="h-6 w-6 text-textColor"
-                    name={`vscode-icons:file-type-${s.toLowerCase()}`}
-                    focusable="false"
-                    title={s}
-                  />
-                </li>
-              ))}
+              {
+                stack.map((s: string) => (
+                  <li>
+                    <Icon
+                      class="h-6 w-6 text-[var(--theme-text)]"
+                      name={`vscode-icons:file-type-${s.toLowerCase()}`}
+                      focusable="false"
+                      title={s}
+                    />
+                  </li>
+                ))
+              }
             </ul>
           </li>
         )
@@ -96,30 +94,44 @@ const articleDate = pubDate.toISOString();
     <hr />
 
     <div
-      class="prose dark:prose-invert prose-sm prose-headings:font-semibold prose-headings:ml-4 prose-headings:before:absolute prose-headings:before:-ms-4 prose-headings:before:text-accent prose-headings:before:content-['#'] prose-th:before:content-none"
+      class="
+        prose dark:prose-invert prose-sm
+        prose-headings:font-semibold
+        prose-headings:ml-4
+        prose-headings:before:absolute
+        prose-headings:before:-ms-4
+        prose-headings:before:text-[var(--theme-accent)]
+        prose-headings:before:content-['#']
+        prose-th:before:content-none
+      "
     >
       <slot />
     </div>
   </section>
+
   <aside slot="sidebar">
     <div class="flex flex-col space-y-2">
-      <h2 class="font-semibold text-lg text-textColor">
+      <h2 class="font-semibold text-lg text-[var(--theme-text)]">
         {siteConfig.profile.author}
       </h2>
       {siteConfig.profile.description && <p>your bio description</p>}
       <SocialMediaLinks />
-      <span class="!my-4 text-accent" aria-hidden>---</span>
-      <p>
-        {description}
-      </p>
+      <span class="!my-4 text-[var(--theme-accent)]" aria-hidden>---</span>
+      <p>{description}</p>
     </div>
-    {!!headings.length && <TOC headings={headings} />}
+    {!!headings.length && <TOC {headings} />}
   </aside>
 </SidebarLayout>
 
 <style>
+  @reference "tailwindcss";
+
   small {
-    @apply text-bgColor px-1 bg-accent mr-2 font-semibold min-w-[95px];
+    /* token colors via CSS variables */
+    @apply text-[var(--theme-bg)] px-1 bg-[var(--theme-accent)] font-semibold
+      min-w-[95px];
+    /* logical spacing or native CSS instead of mr-2 */
+    margin-inline-end: 0.5rem; /* = spacing 2 */
   }
 
   .project-frontmatter-item {

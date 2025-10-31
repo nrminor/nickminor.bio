@@ -18,7 +18,7 @@ const { prevUrl, nextUrl } = Astro.props;
     <nav class="mt-4 flex items-center gap-x-4">
       {prevUrl && (
         <a
-          class="me-auto sm:hover:text-accent"
+          class="me-auto sm:hover:text-[var(--theme-accent)]"
           href={prevUrl.url}
           data-astro-prefetch
         >
@@ -28,7 +28,7 @@ const { prevUrl, nextUrl } = Astro.props;
       )}
       {nextUrl && (
         <a
-          class="ms-auto sm:hover:text-accent"
+          class="ms-auto sm:hover:text-[var(--theme-accent)]"
           href={nextUrl.url}
           data-astro-prefetch
         >

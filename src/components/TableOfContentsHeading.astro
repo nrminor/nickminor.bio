@@ -11,21 +11,24 @@ const { heading } = Astro.props;
   {
     heading.subheadings.length > 0 && (
       <ul class="ml-2">
-        {heading.subheadings.map((subheading: MarkdownHeading[]) => (
-          <Astro.self heading={subheading} />
-        ))}
+        {
+          heading.subheadings.map((
+            subheading: MarkdownHeading[],
+          ) => <Astro.self heading={subheading} />)
+        }
       </ul>
     )
   }
 </li>
 
 <style>
+  @reference "tailwindcss";
   li:before {
     content: "#";
-    @apply -mr-2 text-accent;
+    @apply -me-2 text-[var(--theme-accent)];
   }
 
   .active-toc {
-    @apply text-accent;
+    @apply text-[var(--theme-accent)];
   }
 </style>

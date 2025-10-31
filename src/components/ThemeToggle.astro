@@ -18,6 +18,7 @@
 </button>
 
 <style>
+  @reference "tailwindcss";
   #themeToggle {
     border: 0;
     background: none;
@@ -30,11 +31,11 @@
   }
 
   #themeToggle:hover .sun {
-    @apply fill-accent;
+    fill: var(--theme-accent);
   }
 
   #themeToggle:hover .moon {
-    @apply fill-accent;
+    fill: var(--theme-accent);
   }
 
   :global(.dark) .sun {

@@ -13,7 +13,7 @@ const navLinks = [
 ---
 
 <footer
-  class="mt-auto flex w-full flex-col items-center justify-center gap-y-2 pb-4 pt-20 text-center align-top font-semibold sm:flex-row sm:justify-between sm:text-xs text-textColor mb-8"
+  class="mt-auto flex w-full flex-col items-center justify-center gap-y-2 pb-4 pt-20 text-center align-top font-semibold sm:flex-row sm:justify-between sm:text-xs text-[var(--theme-text)] mb-8"
 >
   <div class="mr-2 sm:mr-0">
     Copyright &copy; {year}{" "}
@@ -27,7 +27,7 @@ const navLinks = [
       navLinks.map((link) => (
         <a
           href={link.route}
-          class="px-2 py-0 hover:text-textColor hover:underline sm:px-4 sm:py-1 text-center"
+          class="px-2 py-0 hover:text-[var(--theme-text)] hover:underline sm:px-4 sm:py-1 text-center"
         >
           {link.text}
         </a>

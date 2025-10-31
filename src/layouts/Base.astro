@@ -1,7 +1,7 @@
 ---
-import BaseHead from "@/components/BaseHead";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import BaseHead from "@/components/BaseHead.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
 import { siteConfig } from "../consts.ts";
 
 interface Props {
@@ -17,10 +17,10 @@ const {
 } = Astro.props;
 ---
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" class="dark">
   <head>
-    <BaseHead title={title} description={description} image={image} />
+    <BaseHead {title} {description} {image} />
   </head>
   <body>
     <Header />

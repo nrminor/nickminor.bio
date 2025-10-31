@@ -9,17 +9,18 @@ const { pathname } = Astro.url;
 const isActive = href === pathname || href === pathname.replace(/\/$/, "");
 ---
 
-<a href={href} class:list={[className, { active: isActive }]} {...props}>
+<a {href} class:list={[className, { active: isActive }]} {...props}>
   <slot />
 </a>
 
 <style>
+  @reference "tailwindcss";
   a:before {
     content: "./";
-    @apply -mr-2 text-accent-2;
+    @apply text-[var(--theme-accent-2)] hover:text-[var(--theme-accent)];
   }
   a {
-    @apply text-accent mr-1;
+    @apply text-[var(--theme-accent)] mr-1;
   }
   a:hover {
     text-decoration: underline;

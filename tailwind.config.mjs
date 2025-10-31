@@ -1,25 +1,9 @@
+// Tailwind v4 - theme configuration is now in CSS via @plugin and CSS variables
+// See src/styles/global.css for theme configuration
 /** @type {import('tailwindcss').Config} */
 export default {
-	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
-	darkMode: "class",
-	theme: {
-		fontFamily: {
-			'mono': ['Berkeley Mono', 'Space Mono', 'monospace']
-		},
-		extend: {
-			colors: {
-				bgColor: "var(--theme-bg)",
-				textColor: "var(--theme-text)",
-				link: "var(--theme-link)",
-				accent: "var(--theme-accent)",
-				"accent-2": "var(--theme-accent-2)",
-				surface: "var(--theme-surface)",
-				quote: "var(--theme-quote)",
-				highlight: "var(--theme-highlight)"
-			},
-		}
-	},
-	plugins: [
-		require('@tailwindcss/typography'),
-	],
-}
+  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
+  darkMode: "class",
+  // Note: In Tailwind v4, theme config is done in CSS via @plugin directive
+  // and CSS custom properties. The color and font definitions are in global.css
+};

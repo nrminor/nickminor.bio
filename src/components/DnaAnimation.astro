@@ -27,10 +27,10 @@ const {
   import Zdog from "zdog";
 
   document.addEventListener("DOMContentLoaded", () => {
-    const canvas = document.querySelector(".dna-canvas");
+    const canvas = document.querySelector(".dna-canvas") as HTMLCanvasElement;
     if (!canvas) return;
 
-    const zoom = parseFloat(canvas.dataset.zoom) || 1.2;
+    const zoom = parseFloat(canvas.dataset.zoom || "1.2") || 1.2;
     const TAU = Zdog.TAU;
     let isSpinning = true;
 
@@ -147,6 +147,7 @@ const {
 </script>
 
 <style>
+  @reference "tailwindcss";
   .dna-animation-wrapper {
     display: flex;
     justify-content: center;

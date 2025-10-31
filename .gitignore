@@ -11,6 +11,7 @@
 # top-level whole-project configuration
 !.prettierrc.mjs
 !astro.config.mjs
+!svelte.config.js
 !package.json
 !tailwind.config.mjs
 !tsconfig.json
@@ -41,10 +42,12 @@
 # components
 !src/components
 !src/components/*.astro
+!src/components/*.svelte
 !src/components/*.md
 !src/components/*.mdx
 !src/components/blog
 !src/components/blog/*.astro
+!src/components/blog/*.svelte
 !src/components/blog/*.mdx
 !src/components/blog/*.md
 

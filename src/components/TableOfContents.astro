@@ -1,6 +1,6 @@
 ---
 import type { MarkdownHeading } from "astro";
-import TableOfContentsHeading from "@/components/TableOfContentsHeading";
+import TableOfContentsHeading from "@/components/TableOfContentsHeading.astro";
 const { headings } = Astro.props;
 const toc = buildToc(headings);
 
@@ -53,7 +53,7 @@ function buildToc(headings: ReadonlyArray<MarkdownHeading>) {
   <hr />
   <h2 class="font-bold text-lg">Table of Contents</h2>
   <ul class="-me-32" id="toc">
-    {toc.map((heading) => <TableOfContentsHeading heading={heading} />)}
+    {toc.map((heading) => <TableOfContentsHeading {heading} />)}
   </ul>
 </nav>
 
