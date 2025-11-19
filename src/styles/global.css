@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+@theme {
+  --font-mono: "Berkeley Mono", "Space Mono", monospace;
+}
+
 @layer base {
   :root {
     color-scheme: light;
@@ -14,7 +18,7 @@
     --theme-highlight: #dd7878;
   }
 
-  :root.dark {
+  html.dark {
     color-scheme: dark;
     --theme-bg: #1d1d1d;
     --theme-text: #ededed;
@@ -23,6 +27,23 @@
     --theme-surface: #2f2f2f;
     --theme-quote: #93e1d4;
     --theme-highlight: #93e1d4;
+  }
+
+  /* Override prose plugin colors with theme variables */
+  .prose {
+    --tw-prose-body: var(--theme-text) !important;
+    --tw-prose-headings: var(--theme-text) !important;
+    --tw-prose-links: var(--theme-accent) !important;
+    --tw-prose-bold: var(--theme-text) !important;
+    --tw-prose-code: var(--theme-text) !important;
+  }
+
+  html.dark .prose {
+    --tw-prose-body: var(--theme-text) !important;
+    --tw-prose-headings: var(--theme-text) !important;
+    --tw-prose-links: var(--theme-accent) !important;
+    --tw-prose-bold: var(--theme-text) !important;
+    --tw-prose-code: var(--theme-text) !important;
   }
 
   html {
@@ -82,7 +103,30 @@
   .prose-cody hr {
     border-top-style: dashed;
     border-top-width: 0.5px;
-    @apply border-[var(--theme-accent)] my-4;
+    border-color: var(--theme-accent);
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  /* Override prose-sm hr spacing with more specific selector */
+  .prose-sm.prose-cody
+    :where(hr):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  /* Override prose-sm hr spacing with more specific selector */
+  .prose-sm.prose-cody
+    :where(hr):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  /* Override prose-sm hr spacing with more specific selector */
+  .prose-sm.prose-cody
+    :where(hr):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
   }
   .prose-cody thead {
     @apply border-b-0;
@@ -182,7 +226,7 @@
   }
 
   hr {
-    @apply border-[var(--theme-accent)] border-dashed my-6;
+    @apply border-[var(--theme-accent)] border-dashed my-4;
   }
 
   ::selection {

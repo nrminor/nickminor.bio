@@ -4,15 +4,34 @@
     "baseUrl": ".",
     "strictNullChecks": true,
     "paths": {
-      "@/utils": ["src/utils/index.ts"],
-      "@/components/*": ["src/components/*"],
-      "@/layouts/*": ["src/layouts/*"],
-      "@/styles/*": ["src/styles/*.css"]
-    }
+      "@/utils": [
+        "src/utils/index.ts"
+      ],
+      "@/components/*": [
+        "src/components/*"
+      ],
+      "@/layouts/*": [
+        "src/layouts/*"
+      ],
+      "@/styles/*": [
+        "src/styles/*.css"
+      ]
+    },
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js"
   },
-  "include": ["src", "*.ts", "*.svelte", "*.astro"],
+  "include": [
+    "src",
+    "*.ts",
+    "*.svelte",
+    "*.astro"
+  ],
   "plugins": [
-    { "name": "typescript-plugin-astro" },
-    { "name": "typescript-svelte-plugin" }
+    {
+      "name": "typescript-plugin-astro"
+    },
+    {
+      "name": "typescript-svelte-plugin"
+    }
   ]
 }

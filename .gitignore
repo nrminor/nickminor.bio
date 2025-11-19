@@ -42,12 +42,12 @@
 # components
 !src/components
 !src/components/*.astro
-!src/components/*.svelte
+!src/components/*.tsx
 !src/components/*.md
 !src/components/*.mdx
 !src/components/blog
 !src/components/blog/*.astro
-!src/components/blog/*.svelte
+!src/components/blog/*.tsx
 !src/components/blog/*.mdx
 !src/components/blog/*.md
 
@@ -69,11 +69,11 @@
 !src/content/blog
 !src/content/blog/*.md
 !src/content/blog/*.mdx
-!src/content/blog/en/*.md
-!src/content/blog/en/*.mdx
+!src/content/blog/*.tsx
 !src/content/project
 !src/content/project/*.md
 !src/content/project/*.mdx
+!src/content/project/*.tsx
 
 # root styles
 !src/styles

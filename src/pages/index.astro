@@ -3,7 +3,7 @@ import type { CollectionEntry } from "astro:content";
 import PostPreview from "@/components/blog/PostPreviewB.astro";
 import SocialMediaLinks from "@/components/SocialMediaLinks.astro";
 import BaseLayout from "@/layouts/Base.astro";
-import DnaAnimationSvelte from "@/components/DnaAnimationSvelte.svelte";
+import DnaAnimation from "@/components/DnaAnimation";
 import { getAllPosts, sortMDByDate, sortMDByPinned } from "@/utils";
 
 const MAX_POSTS = 10;
@@ -40,12 +40,12 @@ const filteredPosts = allPostsByPinned.slice(0, MAX_POSTS);
     </div>
 
     <div class="flex justify-start">
-      <DnaAnimationSvelte
+      <DnaAnimation
         client:load
         width={400}
         height={400}
         zoom={1.2}
-        className="md:sticky md:top-8"
+        class="md:sticky md:top-8"
       />
     </div>
   </section>
