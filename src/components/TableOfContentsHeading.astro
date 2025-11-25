@@ -11,11 +11,9 @@ const { heading } = Astro.props;
   {
     heading.subheadings.length > 0 && (
       <ul class="ml-2">
-        {
-          heading.subheadings.map((
-            subheading: MarkdownHeading[],
-          ) => <Astro.self heading={subheading} />)
-        }
+        {heading.subheadings.map((subheading: MarkdownHeading[]) => (
+          <Astro.self heading={subheading} />
+        ))}
       </ul>
     )
   }

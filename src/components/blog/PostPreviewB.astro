@@ -12,9 +12,8 @@ type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {
 
 const { post, withDesc = false } = Astro.props;
 const slug = getSlugFromCollectionEntry(post);
-const urlBasePath = post.collection === "project"
-  ? "projects"
-  : post.collection;
+const urlBasePath =
+  post.collection === "project" ? "projects" : post.collection;
 const postDate = post.data.updatedDate ?? post.data.pubDate;
 const pinned: boolean = !!post.data.order;
 ---

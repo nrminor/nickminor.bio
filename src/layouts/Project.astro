@@ -53,18 +53,16 @@ const articleDate = pubDate.toISOString();
           <li class="project-frontmatter-item">
             <small>STACK</small>
             <ul class="inline-flex gap-2 sm:gap-4">
-              {
-                stack.map((s: string) => (
-                  <li>
-                    <Icon
-                      class="h-6 w-6 text-[var(--theme-text)]"
-                      name={`vscode-icons:file-type-${s.toLowerCase()}`}
-                      focusable="false"
-                      title={s}
-                    />
-                  </li>
-                ))
-              }
+              {stack.map((s: string) => (
+                <li>
+                  <Icon
+                    class="h-6 w-6 text-[var(--theme-text)]"
+                    name={`vscode-icons:file-type-${s.toLowerCase()}`}
+                    focusable="false"
+                    title={s}
+                  />
+                </li>
+              ))}
             </ul>
           </li>
         )
@@ -94,16 +92,14 @@ const articleDate = pubDate.toISOString();
     <hr />
 
     <div
-      class="
-        prose dark:prose-invert prose-sm
+      class="prose dark:prose-invert prose-sm
         prose-headings:font-semibold
         prose-headings:ml-4
         prose-headings:before:absolute
         prose-headings:before:-ms-4
         prose-headings:before:text-[var(--theme-accent)]
         prose-headings:before:content-['#']
-        prose-th:before:content-none
-      "
+        prose-th:before:content-none"
     >
       <slot />
     </div>

@@ -14,9 +14,8 @@ const { post, withDesc = false } = Astro.props;
 const postDate = post.data.updatedDate ?? post.data.pubDate;
 const slug = getSlugFromCollectionEntry(post);
 const pinned: boolean = !!post.data.order;
-const urlBasePath = post.collection === "project"
-  ? "projects"
-  : post.collection;
+const urlBasePath =
+  post.collection === "project" ? "projects" : post.collection;
 ---
 
 <li>

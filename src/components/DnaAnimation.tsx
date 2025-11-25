@@ -20,7 +20,7 @@ interface DnaAnimationProps {
   spinSpeed?: number;
 }
 
-const DnaAnimationSolid: Component<DnaAnimationProps> = (props) => {
+const DnaAnimation: Component<DnaAnimationProps> = (props) => {
   // Refs
   let canvasRef: HTMLCanvasElement | undefined;
   let illo: Zdog.Illustration | undefined;
@@ -48,8 +48,7 @@ const DnaAnimationSolid: Component<DnaAnimationProps> = (props) => {
   const baseStroke = () => props.baseStroke ?? 9;
   const strandAColor = () => props.strandAColor ?? "#e74c3c";
   const strandBColor = () => props.strandBColor ?? "#3498db";
-  const basePairColors = () =>
-    props.basePairColors ?? ["#f39c12", "#9b59b6", "#2ecc71", "#e67e22"];
+  const basePairColors = () => props.basePairColors ?? ["#f39c12", "#9b59b6", "#2ecc71", "#e67e22"];
   const spinSpeed = () => props.spinSpeed ?? 0.01;
 
   // Helper: Build helix points
@@ -195,33 +194,28 @@ const DnaAnimationSolid: Component<DnaAnimationProps> = (props) => {
 
   return (
     <div class={`dna-animation-wrapper ${props.class ?? ""}`}>
-      <canvas
-        ref={canvasRef}
-        class="dna-canvas"
-        width={width()}
-        height={height()}
-      />
+      <canvas ref={canvasRef} class="dna-canvas" width={width()} height={height()} />
       <style>
         {`
-          .dna-animation-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          }
-          .dna-canvas {
-            border-radius: 8px;
-            background: transparent;
-            cursor: grab;
-            user-select: none;
-            touch-action: none;
-          }
-          .dna-canvas:active {
-            cursor: grabbing;
-          }
-        `}
+.dna-animation-wrapper {
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.dna-canvas {
+border-radius: 8px;
+background: transparent;
+cursor: grab;
+user-select: none;
+touch-action: none;
+}
+.dna-canvas:active {
+cursor: grabbing;
+}
+`}
       </style>
     </div>
   );
 };
 
-export default DnaAnimationSolid;
+export default DnaAnimation;

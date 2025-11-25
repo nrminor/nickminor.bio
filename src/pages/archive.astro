@@ -13,14 +13,17 @@ const meta = {
 };
 
 // Group posts by year
-const postsByYear = sortedPosts.reduce((acc, post) => {
-  const year = post.data.pubDate.getFullYear();
-  if (!acc[year]) {
-    acc[year] = [];
-  }
-  acc[year].push(post);
-  return acc;
-}, {} as Record<number, typeof sortedPosts>);
+const postsByYear = sortedPosts.reduce(
+  (acc, post) => {
+    const year = post.data.pubDate.getFullYear();
+    if (!acc[year]) {
+      acc[year] = [];
+    }
+    acc[year].push(post);
+    return acc;
+  },
+  {} as Record<number, typeof sortedPosts>,
+);
 
 const years = Object.keys(postsByYear)
   .map(Number)
@@ -37,13 +40,13 @@ const years = Object.keys(postsByYear)
     {
       years.map((year) => (
         <section>
-          <h2 class="mb-4 text-2xl font-bold text-[var(--theme-text)]">{year}</h2>
+          <h2 class="mb-4 text-2xl font-bold text-[var(--theme-text)]">
+            {year}
+          </h2>
           <ul class="space-y-4">
-            {
-              postsByYear[year].map((post) => (
-                <PostPreview as="h3" {post} withDesc />
-              ))
-            }
+            {postsByYear[year].map((post) => (
+              <PostPreview as="h3" {post} withDesc />
+            ))}
           </ul>
         </section>
       ))

@@ -29,8 +29,8 @@ const {
   },
 } = post;
 
-const { headings, remarkPluginFrontmatter } = post.render &&
-  (await post.render());
+const { headings, remarkPluginFrontmatter } =
+  post.render && (await post.render());
 const { minutesRead } = remarkPluginFrontmatter;
 
 const socialImage = ogImage ?? `/og-image/${slug}.png`;
@@ -43,12 +43,7 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
 const articleDate = updatedDate?.toISOString() ?? pubDate.toISOString();
 ---
 
-<Layout
-  {title}
-  {description}
-  image={socialImage}
-  {articleDate}
->
+<Layout {title} {description} image={socialImage} {articleDate}>
   <article
     class="cody-bg prose dark:prose-invert prose-cody text-[var(--theme-text)] max-w-4xl"
   >
@@ -74,15 +69,15 @@ const articleDate = updatedDate?.toISOString() ?? pubDate.toISOString();
         <h1 class="text-3xl my-0">{title}</h1>
         {
           draft && (
-            <span
-              class="px-1 py-0 bg-red-200 text-red-600 text-sm font-semibold"
-            >
+            <span class="px-1 py-0 bg-red-200 text-red-600 text-sm font-semibold">
               draft
             </span>
           )
         }
       </div>
-      <span class="font-semibold text-[var(--theme-text)] flex gap-2 items-center">
+      <span
+        class="font-semibold text-[var(--theme-text)] flex gap-2 items-center"
+      >
         <FormattedDate date={pubDate} {dateTimeOptions} />
         <span>
           / {minutesRead}
@@ -91,10 +86,7 @@ const articleDate = updatedDate?.toISOString() ?? pubDate.toISOString();
           updatedDate && (
             <div class="italic px-2 bg-[var(--theme-accent-2)] w-fit text-sm font-normal">
               Last updated:{" "}
-              <FormattedDate
-                date={updatedDate}
-                {dateTimeOptions}
-              />
+              <FormattedDate date={updatedDate} {dateTimeOptions} />
             </div>
           )
         }
@@ -108,13 +100,11 @@ const articleDate = updatedDate?.toISOString() ?? pubDate.toISOString();
               aria-hidden="true"
               focusable="false"
             />
-            {
-              tags.map((tag: string) => (
-                <li class="tag">
-                  <a href={`/tags/${tag}`}>{tag}</a>
-                </li>
-              ))
-            }
+            {tags.map((tag: string) => (
+              <li class="tag">
+                <a href={`/tags/${tag}`}>{tag}</a>
+              </li>
+            ))}
           </ul>
         )
       }

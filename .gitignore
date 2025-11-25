@@ -11,13 +11,13 @@
 # top-level whole-project configuration
 !.prettierrc.mjs
 !astro.config.mjs
-!svelte.config.js
 !package.json
 !tailwind.config.mjs
 !tsconfig.json
 !biome.jsonc
 !.pre-commit-config.yaml
 !.lycheeignore
+!.npmrc
 !justfile
 
 # github workflows
