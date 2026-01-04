@@ -5,5 +5,4 @@
 [![Bun v1.2.21](https://img.shields.io/badge/Bun-000?logo=bun&logoColor=fff)](https://bun.com/)
 [![Checked with Biome](https://img.shields.io/badge/Checked_with-Biome-60a5fa?style=flat&logo=biome)](https://biomejs.dev)
 
-My personal website, built with Astro
-and[the Cody theme](https://astro.build/themes/details/cody/).
+My personal website, built with Astro and [the Cody theme](https://astro.build/themes/details/cody/).

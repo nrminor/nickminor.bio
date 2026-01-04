@@ -27,8 +27,8 @@ const navLinks = [
     <a
       class="title whitespace-nowrap"
       href="/"
-      aria-current={url.pathname === "/" ? "page" : false}>{siteConfig.title}</a
-    >
+      aria-current={url.pathname === "/" ? "page" : false}
+    >{siteConfig.title}</a>
   </div>
 
   <nav
@@ -57,15 +57,15 @@ const navLinks = [
         href="/tags"
         title="tags"
         aria-current={url.pathname === "tags" ? "page" : false}
-        data-astro-prefetch>Tags</HeaderLink
-      >
+        data-astro-prefetch
+      >Tags</HeaderLink>
       <HeaderLink
         class="sm:hidden block py-2 sm:py-0"
         href="/series"
         title="series"
         aria-current={url.pathname === "series" ? "page" : false}
-        data-astro-prefetch>Series</HeaderLink
-      >
+        data-astro-prefetch
+      >Series</HeaderLink>
     </div>
   </nav>
 
@@ -129,13 +129,13 @@ const navLinks = [
   }
 
   .title:before {
-    content: "let site = ";
+    content: "let site = \"";
     margin-right: 0;
     @apply text-[var(--theme-bg)];
   }
 
   .title:after {
-    content: ";";
+    content: "\";";
     @apply text-[var(--theme-bg)];
   }
 </style>
@@ -151,7 +151,9 @@ const navLinks = [
     constructor() {
       super();
       this.headerEl = document.getElementById("main-header")!;
-      this.mobileButtonEl = this.querySelector("button") as HTMLButtonElement;
+      this.mobileButtonEl = this.querySelector(
+        "button",
+      ) as HTMLButtonElement;
       this.menuOpen = false;
 
       this.mobileButtonEl.addEventListener("click", this.toggleMobileMenu);
