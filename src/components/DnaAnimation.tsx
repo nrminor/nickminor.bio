@@ -82,7 +82,9 @@ const DnaAnimation: Component<DnaAnimationProps> = (props) => {
   const clearShapes = () => {
     strandAShape?.remove();
     strandBShape?.remove();
-    basePairShapes.forEach((s) => s.remove());
+    basePairShapes.forEach((s) => {
+      s.remove();
+    });
     basePairShapes = [];
   };
 
