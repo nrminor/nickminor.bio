@@ -1,5 +1,5 @@
-import getReadingTime from 'reading-time';
 import { toString } from 'mdast-util-to-string';
+import getReadingTime from 'reading-time';
 
 // https://docs.astro.build/en/recipes/reading-time/#recipe
 export function remarkReadingTime() {

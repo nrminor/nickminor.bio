@@ -1,10 +1,10 @@
 ---
-import { siteConfig } from "../consts";
-import SidebarLayout from "./Sidebar.astro";
+import type { CollectionEntry } from "astro:content";
+import { Icon } from "astro-icon/components";
 import SocialMediaLinks from "@/components/SocialMediaLinks.astro";
 import TOC from "@/components/TableOfContents.astro";
-import { Icon } from "astro-icon/components";
-import type { CollectionEntry } from "astro:content";
+import { siteConfig } from "../consts";
+import SidebarLayout from "./Sidebar.astro";
 
 interface Props {
   project: CollectionEntry<"project">;

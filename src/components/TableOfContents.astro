@@ -1,6 +1,7 @@
 ---
 import type { MarkdownHeading } from "astro";
 import TableOfContentsHeading from "@/components/TableOfContentsHeading.astro";
+
 const { headings } = Astro.props;
 const toc = buildToc(headings);
 

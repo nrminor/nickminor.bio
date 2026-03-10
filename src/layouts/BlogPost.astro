@@ -1,13 +1,14 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import Layout from "../layouts/Sidebar.astro";
-import FormattedDate from "../components/FormattedDate.astro";
-import SocialMediaLinks from "@/components/SocialMediaLinks.astro";
-import TOC from "@/components/TableOfContents.astro";
+import { Icon } from "astro-icon/components";
 import BackToTopBtn from "@/components/BackToTopBtn.astro";
 import CopyBtn from "@/components/CopyBtn.astro";
-import { Icon } from "astro-icon/components";
+import SocialMediaLinks from "@/components/SocialMediaLinks.astro";
+import TOC from "@/components/TableOfContents.astro";
+import FormattedDate from "../components/FormattedDate.astro";
 import { siteConfig } from "../consts";
+import Layout from "../layouts/Sidebar.astro";
+
 interface Props {
   post: CollectionEntry<"blog">;
 }
